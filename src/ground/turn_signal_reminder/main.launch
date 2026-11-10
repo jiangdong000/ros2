@@ -1,0 +1,40 @@
+
+Enter file contents here
+<?xml version="1.0"?>
+<launch>
+  <!-- 迟滞阈值：打方向用 enter_steer_rad，回正用 exit_steer_rad，
+       两个阈值不相等，避免方向盘停在阈值附近时提醒反复触发 -->
+  <arg name="enter_steer" default="0.25" doc="判定为在打方向的转角阈值（弧度），超过它进入转弯状态"/>
+  <arg name="exit_steer" default="0.15" doc="判定为已回正的转角阈值（弧度），低于它退出转弯状态"/>
+
+  <!-- 帧数与时间确认 -->
+  <arg name="no_signal_frames" default="3" doc="打方向但没打灯，连续多少帧才提醒"/>
+  <arg name="lamp_off_delay" default="3.0" doc="已回正但灯还亮着，持续多少秒后提醒关灯"/>
+  <arg name="no_signal_cooldown" default="5.0" doc="同一次未打灯提醒后，多少秒内不重复提醒"/>
+
+  <arg name="sample_hz" default="10.0" doc="节点采样推进频率（赫兹）"/>
+
+  <arg name="steer_topic" default="/vehicle/steering" doc="输入方向盘转角话题（std_msgs/Float64）"/>
+  <arg name="signal_topic" default="/vehicle/turn_signal" doc="输入转向灯开关话题（std_msgs/Bool）"/>
+  <arg name="warn_topic" default="/reminder/no_signal_warn" doc="输出未打灯告警话题"/>
+  <arg name="remind_topic" default="/reminder/lamp_off_remind" doc="输出忘关灯提醒话题"/>
+  <arg name="report_topic" default="/reminder/report" doc="输出整段回放结论话题"/>
+  <arg name="sim_service" default="/turn_signal_reminder/simulate" doc="触发内置场景回放的服务"/>
+
+  <rosparam command="load" file="$(find turn_signal_reminder)/config/turn_signal_reminder.yaml"/>
+
+  <param name="hysteresis/enter_steer_rad" value="$(arg enter_steer)"/>
+  <param name="hysteresis/exit_steer_rad" value="$(arg exit_steer)"/>
+  <param name="confirm/no_signal_frames" value="$(arg no_signal_frames)"/>
+  <param name="confirm/lamp_off_delay_sec" value="$(arg lamp_off_delay)"/>
+  <param name="confirm/no_signal_cooldown_sec" value="$(arg no_signal_cooldown)"/>
+  <param name="rate/sample_hz" value="$(arg sample_hz)"/>
+  <param name="topic/steering" value="$(arg steer_topic)"/>
+  <param name="topic/signal" value="$(arg signal_topic)"/>
+  <param name="topic/warn_no_signal" value="$(arg warn_topic)"/>
+  <param name="topic/remind_lamp_off" value="$(arg remind_topic)"/>
+  <param name="topic/report" value="$(arg report_topic)"/>
+  <param name="service/simulate" value="$(arg sim_service)"/>
+
+  <node pkg="turn_signal_reminder" type="main.py" name="turn_signal_reminder" output="screen"/>
+</launch>
