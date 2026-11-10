@@ -1,0 +1,28 @@
+
+Enter file contents here
+# turn_signal_reminder 的默认参数
+# 不改任何参数时行为固定；下面每一项都能用 launch 的同名 <arg> 覆盖。
+# 参数名与 scripts/reminder_core.py 中 ReminderParams.from_params 读取的键一一对应。
+
+hysteresis:
+  enter_steer_rad: 0.25      # |方向盘转角| 超过它判定为「在打方向」（弧度，约 14.3°）
+  exit_steer_rad: 0.15       # |方向盘转角| 低于它判定为「已回正」（弧度，约 8.6°）
+                             # 进入与退出之间留 0.10 rad 死区，阈值附近抖动不会反复横跳
+
+confirm:
+  no_signal_frames: 3        # 打方向但没打灯，要连续多少帧都在打方向才提醒（10 Hz 下约 0.3 s）
+  lamp_off_delay_sec: 3.0    # 已回正但转向灯还亮着，持续多少秒后提醒关灯
+  no_signal_cooldown_sec: 5.0 # 同一次「没打灯」提醒后，多少秒内不重复提醒
+
+rate:
+  sample_hz: 10.0            # 节点采样/推进频率（赫兹）
+
+topic:
+  steering: /vehicle/steering   # 输入：std_msgs/Float64，方向盘转角（弧度，左正右负均可，取绝对值）
+  signal: /vehicle/turn_signal  # 输入：std_msgs/Bool，True=转向灯已打开
+  warn_no_signal: /reminder/no_signal_warn        # 输出：std_msgs/String，未打灯告警
+  remind_lamp_off: /reminder/lamp_off_remind      # 输出：std_msgs/String，忘关灯提醒
+  report: /reminder/report                        # 输出：std_msgs/String，整段回放结论
+
+service:
+  simulate: /turn_signal_reminder/simulate        # 触发内置场景回放，std_srvs/Trigger
