@@ -1,0 +1,20 @@
+Enter file contents here
+<?xml version="1.0"?>
+<package format="2">
+  <name>turn_signal_reminder</name>
+  <version>1.0.0</version>
+  <description>
+    转向灯使用提醒：根据方向盘转角与转向灯开关状态，做两类提醒——
+    打方向但没打灯（进入/退出双阈值迟滞 + 连续帧数确认），以及
+    回正后转向灯忘记关闭（直线保持若干秒后提醒）。
+    纯标准库实现判定核心，不依赖 CARLA、不需要显卡，离线一条命令跑完全部断言。
+  </description>
+  <maintainer email="jiangdong000@users.noreply.github.com">jiangdong000</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>std_srvs</exec_depend>
+</package>
