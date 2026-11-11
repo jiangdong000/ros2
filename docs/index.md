@@ -127,7 +127,7 @@ ROS 2 QoS 兼容性检查实验：[chap2/ros2_qos_compatibility_lab](./chap2/ros
 * [肌肉驱动的关节控制与 Hill 肌肉模型](./musculoskeletal/muscle_joint_control.md)
 * [肌肉疲劳建模：持续收缩下的肌力衰减与恢复](./musculoskeletal/muscle_fatigue.md) —— 在 Hill 模型上叠加疲劳因子，对比持续与间歇收缩的力衰减
 * [肌肉驱动的夹爪抓取：真实接触抓取](./musculoskeletal/msk_gripper.md)
-* [肌肉驱动的下肢关节与步态](./musculoskeletal/muscle_leg_gait.md)
+* [肌肉驱动的下肢关节与步态](./musculoskeletal/msk_leg_gait.md)
 * [膝关节肌肉骨骼仿真与轨迹跟踪](./musculoskeletal/knee_tracking.md)
 * [机械臂手眼标定仿真](./humanoid/hand_eye_calibration.md) 
 
@@ -204,6 +204,7 @@ ROS 2 QoS 兼容性检查实验：[chap2/ros2_qos_compatibility_lab](./chap2/ros
 * [基于神经网络的无人小车自适应跟车（ACC）](./ground/carla_nn_car_following.md)
 * [Gazebo 差速小车键盘控制](./ground/gazebo_diff_drive_teleop.md)
 * [恶劣雨雾天气下多传感器感知性能对比实验](./ground/weather_perception_benchmark.md)
+* [雨雾天气下自适应感知降级策略的静态帧复现](./ground/weather_adaptive_perception_replay.md)
 * [神经网络强化学习算法与网络结构对比（MuJoCo CartPole）](./ground/rl_algorithm_compare.md)
 * [基于Mujoco的键盘遥控小车](./ground/mujoco_car_project.md)
 * [地面载具横向控制算法对比（纯跟踪 / Stanley / LQR）](./ground/lateral_control_benchmark.md) —— 同一车辆模型与指标下定量比较三种横向控制器
@@ -247,6 +248,7 @@ ROS 2 QoS 兼容性检查实验：[chap2/ros2_qos_compatibility_lab](./chap2/ros
 * [前视相机车道偏离预警（视觉横向偏移与地图真值对照）](./ground/carla_visual_lane_departure_warning.md) —— 用前视图像估计横向偏移，并与地图真值逐帧对照
 * [差速 AGV 坡道起步辅助（防溜车）](./ground/hill_start_assist.md) —— MuJoCo 12° 斜坡，四轮轮角保持 PD + 坡度前馈，松刹车 3 s 后溜 2.18 m 降到 0.008 m
 * [地面移动底盘速度指令安全监督](./ground/cmd_vel_guard.md) —— 对 `/cmd_vel` 做限幅、急停、超时与非法值拦截，无需仿真环境
+* [区域全覆盖往复清扫 AGV（牛耕式路径）](./ground/coverage_mowing_agv.md) —— 矩形障碍场景下牛耕式往复覆盖路径规划，网格统计覆盖率并绕行障碍
 * [VRU 冲突风险图](./ground/vru_conflict_risk_map.md) —— 按时间对齐自车与行人、儿童和骑行者轨迹，输出最小距离、TTC 和风险等级
 * [里程计健康监视（打滑 / 堵转 / 反向检测）](./ground/odom_health_monitor.md) —— 比较 `/cmd_vel` 与 `/odom` 的速度比值，识别打滑、堵转与反向运动
 * [轮胎滑移率-附着曲线](./ground/tire_slip_curve.md) —— 用简化刷子轮胎模型输出滑移率与附着系数关系，标出峰值附着与 ABS 目标滑移带
