@@ -1,4 +1,4 @@
-site_name: 模拟器的 ROS 文档
+﻿site_name: 模拟器的 ROS 文档
 # 参考链接：https://blog.csdn.net/m0_63203517/article/details/129765689
 #repo_url: https://github.com/carla-simulator/carla
 #docs_dir: Docs
@@ -234,6 +234,7 @@ nav:
     - 转弯扫掠校验: './ground/turning_sweep_check.md'
     - 高精度定位与重定位（AMCL 式粒子滤波）: './ground/turtlebot3_relocalization.md'
     - 速度指令安全监督: './ground/cmd_vel_guard.md'
+    - 巡线小车仿真（色带中线 PD 跟踪）: './ground/line_follower_car.md'
     - VRU 冲突风险图: './ground/vru_conflict_risk_map.md'
     - 里程计健康监视: './ground/odom_health_monitor.md'
 - 空域载具:
@@ -407,3 +408,4 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:mermaid2.fence_mermaid
+
